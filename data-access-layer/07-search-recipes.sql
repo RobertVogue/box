@@ -23,3 +23,6 @@
 
 
 -- YOUR CODE HERE
+SELECT id, title, updated
+From recipes
+WHERE title ILIKE $1
