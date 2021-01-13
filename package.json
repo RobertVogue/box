@@ -19,7 +19,7 @@
   "scripts": {
     "dev": "nodemon",
     "seed": "cat data-access-layer/00a-schema.sql | psql postgres && cat data-access-layer/00b-seed.sql | psql recipe_box",
-    "start": "node server/index.js",
+    "start": "nodemon server/index.js",
     "test": "mocha"
   },
   "keywords": [],
