@@ -8,6 +8,7 @@
 -- user.
 
 -- YOUR CODE HERE
+SET ROLE recipe_box_app;
 
 
 
@@ -25,6 +26,13 @@
 -- | updated     | TIMESTAMP    | NOT NULL, DEFAULT CURRENT_TIMESTAMP |
 
 -- YOUR CODE HERE
+
+CREATE TABLE recipes (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
 
 
@@ -48,6 +56,13 @@
 
 -- YOUR CODE HERE
 
+CREATE TABLE instructions (
+    id SERIAl PRIMARY KEY,
+    specification TEXT NOT NULL,
+    list_order INTEGER NOT NULL,
+    recipe_id INTEGER REFERENCES recipes(id) NOT NULL
+);
+
 
 
 
@@ -63,6 +78,11 @@
 -- | name        | VARCHAR(20) | NOT NULL    |
 
 -- YOUR CODE HERE
+
+CREATE TABLE units_of_measure (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL
+);
 
 
 
@@ -86,6 +106,14 @@
 -- | recipe_id          | INTEGER       | FK, NOT NULL |
 
 -- YOUR CODE HERE
+
+CREATE TABLE ingredients (
+    id SERIAL PRIMARY KEY,
+    amount NUMERIC(5,2) NOT NULL,
+    unit_of_measure_id INTEGER REFERENCES units_of_measure(id) NOT NULL,
+    food_stuff VARCHAR(500) NOT NULL,
+    recipe_id INTEGER REFERENCES recipes(id) NOT NULL
+);
 
 
 
